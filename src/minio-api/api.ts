@@ -1,11 +1,11 @@
-import { S3Client, ListBucketsCommand, ListObjectsCommand, GetObjectCommand, GetObjectCommandOutput } from '@aws-sdk/client-s3'
+import { S3Client, GetObjectCommand, GetObjectCommandOutput } from '@aws-sdk/client-s3'
 
 const s3Client = new S3Client({
     region: 'placeholder',
     endpoint: 'http://localhost:9000',
     credentials: {
-        accessKeyId: 'minioadmin',
-        secretAccessKey: 'minioadmin'
+        accessKeyId: process.env.ACCESS_KEY_ID || 'minioadmin',
+        secretAccessKey: process.env.SECRET_ACCESS_KEY || 'minioadmin'
     },
     forcePathStyle: true
 })

@@ -1,3 +1,6 @@
+import { config } from 'dotenv';
+config();
+
 import express, { Request, Response } from 'express';
 import cors from "cors";
 import mime from "mime-types";
@@ -24,7 +27,7 @@ app.get(/(.*)/, async (req: Request, res: Response) => {
     try{
         objectData = await getObject(fullPath);
     } catch (err) {
-        return res.status(404).send('File not found');
+        return res.status(404).send(err);
     }
 
     const nodeStream = sdkStreamMixin(objectData.Body as any);
