@@ -24,8 +24,10 @@ export async function getObject(objectKey: string, bucketName: string): Promise<
         const objectData = await s3Client.send(new GetObjectCommand({
             Bucket: bucketName,
             Key: objectKey
-        }))
+        }));
+
         return objectData;
+        
     } catch (err) {
         return Promise.reject(err);
     }
