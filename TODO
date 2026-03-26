@@ -1,0 +1,4 @@
+[ ] link database to app
+    [ ] db related express-routes
+
+[ ] something to periodically read databse and fetch queued projects and process them

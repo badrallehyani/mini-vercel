@@ -87,35 +87,14 @@ async function updateProjectStatusById(id: string, status: Status) {
     return project;
 }
 
-async function main() {
-    const user = await prisma.user.create({
-        data: {
-            name: "Test User",
-        }
-    });
-    console.log("Created user:", user);
-
-    const userID = user.id;
-
-    const project = await prisma.project.create({
-        data: {
-            name: "Test Project",
-            githubRepoURL: "",
-            userId: userID,
-        }
-    });
-    console.log("Created project:", project);
-
-
-
-}
-
-main()
-    .then(async () => {
-        await prisma.$disconnect();
-    })
-    .catch(async (e) => {
-        console.error(e);
-        await prisma.$disconnect();
-        process.exit(1);
-    });
+export {
+    createUser,
+    createProject,
+    getUserById,
+    getProjectById,
+    getProjectsByUserId,
+    deleteUserById,
+    deleteProjectById,
+    deleteProjectsByUserId,
+    updateProjectStatusById
+};
