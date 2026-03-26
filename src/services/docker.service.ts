@@ -4,6 +4,7 @@ import { PassThrough } from 'node:stream';
 import { uploadFileToS3 } from './minio.service';
 
 import fs from 'node:fs/promises';
+import { getLogFilePath } from '../utils/utils';
 
 const docker = new Docker();
 
@@ -35,7 +36,7 @@ export async function buildAndRunDockerImage(gitURL: string, projectID: string) 
         const cleanTextStream = new PassThrough();
         container.modem.demuxStream(logs, cleanTextStream, cleanTextStream);
 
-        const logPath = `tmp/${projectID}.log`;
+        const logPath = getLogFilePath(projectID);
         const fileWriteStream = createWriteStream(logPath);
         cleanTextStream.pipe(fileWriteStream);
 

@@ -13,11 +13,13 @@ const s3Client = new S3Client({
 })
 
 // print environment variables for debugging
+console.log("")
 console.log("S3 Client Configuration:");
-console.log("Region:", process.env.MINIO_REGION || 'nothing');
-console.log("Endpoint:", process.env.MINIO_ENDPOINT || 'http://localhost:9000');
-console.log("Access Key ID:", process.env.MINIO_ACCESS_KEY ? "****" : "Not Set");
-console.log("Secret Access Key:", process.env.MINIO_SECRET_KEY ? "****" : "Not Set");
+console.log("   Region:", process.env.MINIO_REGION || 'nothing');
+console.log("   Endpoint:", process.env.MINIO_ENDPOINT || 'http://localhost:9000');
+console.log("   Access Key ID:", process.env.MINIO_ACCESS_KEY || "Not Set");
+console.log("   Secret Access Key:", process.env.MINIO_SECRET_KEY || "Not Set");
+console.log("")
 
 export async function getObject(objectKey: string, bucketName: string): Promise<GetObjectCommandOutput> {
     try {

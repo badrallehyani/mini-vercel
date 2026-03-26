@@ -9,7 +9,7 @@ import { getObject, uploadFileToS3, uploadFolderS3 } from './services/minio.serv
 import { sdkStreamMixin } from '@aws-sdk/util-stream-node';
 
 import clone from "git-clone/promise";
-import { getProjectType, PROJECTS_TYPES } from './utils/utils';
+import { getLogFilePath, getProjectType, PROJECTS_TYPES } from './utils/utils';
 import { buildAndRunDockerImage } from './services/docker.service';
 
 import fs from 'node:fs/promises';
@@ -74,7 +74,7 @@ app.get("/upload-github", async (req: Request, res: Response) => {
     else if (type === PROJECTS_TYPES.VANILLA) {
         try {
 
-            const logPath = `tmp/${projectID}.log`;
+            const logPath = getLogFilePath(projectID);
 
             const logger = async (msg: string) => {
                 const logMsg = `[${new Date().toISOString()}] ${msg}`;

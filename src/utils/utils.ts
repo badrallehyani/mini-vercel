@@ -61,3 +61,8 @@ export async function getProjectType(dirPath: string): Promise<string> {
     return PROJECTS_TYPES.UNKNOWN;
 
 }
+
+export function getLogFilePath(projectID: string): string {
+    const logsDir = path.join(__dirname, "..", "..", "tmp");
+    return path.join(logsDir, `${projectID}.log`);
+}
